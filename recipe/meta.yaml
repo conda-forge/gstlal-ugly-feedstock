@@ -1,5 +1,5 @@
 {% set name = "gstlal-ugly" %}
-{% set version = "1.6.6" %}
+{% set version = "1.7.0" %}
 
 package:
   name: "{{ name|lower }}"
@@ -7,7 +7,7 @@ package:
 
 source:
   url: "http://software.ligo.org/lscsoft/source/{{ name }}-{{ version }}.tar.gz"
-  sha256: 2073fbe542158c61179ec34b78305a8f0e8d32ff8e177a1ecdadd7915da27942
+  sha256: bec47393e63e5a052778f3b41d5cacfcd25688bbdc305ec3d1c439b85a9f2d4b
   patches:
     # https://git.ligo.org/lscsoft/gstlal/issues/43
     - gstaudio-link.patch
