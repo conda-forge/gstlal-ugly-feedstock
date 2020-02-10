@@ -21,7 +21,7 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - make  # [unix]
-    - pkg-config  # [unix]
+    - pkg-config >=0.18.0  # [unix]
   host:
     - fftw
     - glib
@@ -29,38 +29,44 @@ requirements:
     - gstreamer
     - gst-plugins-base
     - gst-python
-    - gstlal >=1.5.0
+    - gstlal >=1.6.0
     - lal >=6.19.0
     - lalmetaio >=1.5.0
     - ldas-tools-al
     - ldas-tools-framecpp >=2.6.2
+    - ligo-scald >=0.7.2
+    - ligo-segments >=1.2.0
+    - lscsoft-glue >=2.0.0
+    - metaio >=1.4.0
     - nds2-client >=0.11.5
+    - numpy >=1.7.0
     - pygobject >=3.14
     - python
     - python-lal
-    - python-ligo-lw >=1.2.0
+    - python-ligo-lw >=1.5.3
   run:
     - fftw
     - gsl
     - gstreamer
     - gst-plugins-base
     - gst-python
-    - gstlal >=1.5.0
+    - gstlal >=1.6.0
     - h5py
     - lal >=6.19.2
     - lalmetaio >=1.5.0
     - lalapps >=6.23.0
     - ldas-tools-al
     - ldas-tools-framecpp >=2.6.2
-    - ligo-segments >=1.0.0
-    - lscsoft-glue >=1.59.3
+    - ligo-scald >=0.7.2
+    - ligo-segments >=1.2.0
+    - lscsoft-glue >=2.0.0
     - matplotlib-base
     - numpy
     - pygobject >=3.14
     - python
     - python-lal
     - python-lalsimulation
-    - python-ligo-lw >=1.2.0
+    - python-ligo-lw >=1.5.3
     - scipy
 
 test:
