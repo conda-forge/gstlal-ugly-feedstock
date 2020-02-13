@@ -1,5 +1,5 @@
 {% set name = "gstlal-ugly" %}
-{% set version = "1.6.6" %}
+{% set version = "1.7.0" %}
 
 package:
   name: "{{ name|lower }}"
@@ -7,13 +7,20 @@ package:
 
 source:
   url: "http://software.ligo.org/lscsoft/source/{{ name }}-{{ version }}.tar.gz"
-  sha256: 2073fbe542158c61179ec34b78305a8f0e8d32ff8e177a1ecdadd7915da27942
+  sha256: bec47393e63e5a052778f3b41d5cacfcd25688bbdc305ec3d1c439b85a9f2d4b
   patches:
     # https://git.ligo.org/lscsoft/gstlal/issues/43
     - gstaudio-link.patch
 
 build:
-  number: 1
+  error_overdepending: true
+  error_overlinking: true
+  ignore_run_exports:
+    # not linked, but needed at runtime
+    - gst-plugins-good
+    # configure asks for it, but it is never actually used
+    - lalmetaio
+  number: 0
   skip: true  # [win or py>30]
 
 requirements:
@@ -21,53 +28,63 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - make  # [unix]
-    - pkg-config  # [unix]
+    - pkg-config >=0.18.0  # [unix]
   host:
     - fftw
     - glib
+    - gobject-introspection >=1.30.0
     - gsl
     - gstreamer
     - gst-plugins-base
     - gst-python
-    - gstlal >=1.5.0
+    - gstlal >=1.6.0
     - lal >=6.19.0
     - lalmetaio >=1.5.0
     - ldas-tools-al
     - ldas-tools-framecpp >=2.6.2
+    - ligo-scald >=0.7.2
+    - ligo-segments >=1.2.0
+    - lscsoft-glue >=2.0.0
+    - metaio >=1.4.0
     - nds2-client >=0.11.5
+    - numpy >=1.7.0
     - pygobject >=3.14
     - python
     - python-lal
-    - python-ligo-lw >=1.2.0
+    - python-ligo-lw >=1.5.3
   run:
     - fftw
+    - gobject-introspection >=1.30.0
     - gsl
-    - gstreamer
     - gst-plugins-base
+    - gst-plugins-good
     - gst-python
-    - gstlal >=1.5.0
+    - gstreamer
+    - gstlal >=1.6.0
     - h5py
     - lal >=6.19.2
-    - lalmetaio >=1.5.0
     - lalapps >=6.23.0
     - ldas-tools-al
     - ldas-tools-framecpp >=2.6.2
-    - ligo-segments >=1.0.0
-    - lscsoft-glue >=1.59.3
+    - ligo-scald >=0.7.2
+    - ligo-segments >=1.2.0
+    - lscsoft-glue >=2.0.0
     - matplotlib-base
     - numpy
     - pygobject >=3.14
     - python
     - python-lal
     - python-lalsimulation
-    - python-ligo-lw >=1.2.0
+    - python-ligo-lw >=1.5.3
     - scipy
 
 test:
+  requires:
+    - python-confluent-kafka
   imports:
     - gstlal
     - gstlal.aggregator
-    - gstlal.gviz_api
+    - gstlal.events
     - gstlal.metric
     - gstlal.tree
   commands:

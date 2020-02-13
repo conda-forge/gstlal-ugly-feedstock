@@ -22,6 +22,8 @@ gst_plugins_base:
 - 1.14.4
 gstreamer:
 - 1.14.4
+numpy:
+- '1.14'
 pin_run_as_build:
   fftw:
     max_pin: x

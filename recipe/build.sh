@@ -12,14 +12,18 @@ find ${PREFIX} -name "*.la" -delete
 export GSL_LIBS="-L${PREFIX}/lib -lgsl"
 export GSTLAL_LIBS="-L${PREFIX}/lib -lgstlal -lgstlaltags -lgstlaltypes"
 export framecpp_CFLAGS=" "
+export LAL_LIBS="-L${PREFIX}/lib -llal"
 
 # configure
 ${SRC_DIR}/configure \
+  --enable-gtk-doc=no \
+  --enable-gtk-doc-html=no \
+  --enable-gtk-doc-pdf=no \
+  --enable-introspection \
   --prefix=${PREFIX} \
   --with-doxygen=no \
   --with-framecpp=yes \
   --with-gds=no \
-  --with-html-dir=$(pwd)/tmphtml \
   --with-nds=yes \
 ;
 
