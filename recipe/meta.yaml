@@ -79,6 +79,8 @@ requirements:
     - scipy
 
 test:
+  requires:
+    - python-confluent-kafka
   imports:
     - gstlal
     - gstlal.aggregator
