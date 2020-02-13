@@ -18,6 +18,8 @@ build:
   ignore_run_exports:
     # not linked, but needed at runtime
     - gst-plugins-good
+    # configure asks for it, but it is never actually used
+    - lalmetaio
   number: 0
   skip: true  # [win or py>30]
 
@@ -61,7 +63,6 @@ requirements:
     - gstlal >=1.6.0
     - h5py
     - lal >=6.19.2
-    - lalmetaio >=1.5.0
     - lalapps >=6.23.0
     - ldas-tools-al
     - ldas-tools-framecpp >=2.6.2

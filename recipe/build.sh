@@ -12,6 +12,7 @@ find ${PREFIX} -name "*.la" -delete
 export GSL_LIBS="-L${PREFIX}/lib -lgsl"
 export GSTLAL_LIBS="-L${PREFIX}/lib -lgstlal -lgstlaltags -lgstlaltypes"
 export framecpp_CFLAGS=" "
+export LAL_LIBS="-L${PREFIX}/lib -llal"
 
 # configure
 ${SRC_DIR}/configure \
