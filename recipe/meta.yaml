@@ -15,6 +15,9 @@ source:
 build:
   error_overdepending: true
   error_overlinking: true
+  ignore_run_exports:
+    # not linked, but needed at runtime
+    - gst-plugins-good
   number: 0
   skip: true  # [win or py>30]
 
