@@ -15,11 +15,14 @@ export framecpp_CFLAGS=" "
 
 # configure
 ${SRC_DIR}/configure \
+  --enable-gtk-doc=no \
+  --enable-gtk-doc-html=no \
+  --enable-gtk-doc-pdf=no \
+  --enable-introspection \
   --prefix=${PREFIX} \
   --with-doxygen=no \
   --with-framecpp=yes \
   --with-gds=no \
-  --with-html-dir=$(pwd)/tmphtml \
   --with-nds=yes \
 ;
 

@@ -19,12 +19,12 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
-    - {{ compiler('cxx') }}
     - make  # [unix]
     - pkg-config >=0.18.0  # [unix]
   host:
     - fftw
     - glib
+    - gobject-introspection >=1.30.0
     - gsl
     - gstreamer
     - gst-plugins-base
@@ -46,10 +46,12 @@ requirements:
     - python-ligo-lw >=1.5.3
   run:
     - fftw
+    - gobject-introspection >=1.30.0
     - gsl
-    - gstreamer
     - gst-plugins-base
+    - gst-plugins-good
     - gst-python
+    - gstreamer
     - gstlal >=1.6.0
     - h5py
     - lal >=6.19.2
