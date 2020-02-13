@@ -81,7 +81,7 @@ test:
   imports:
     - gstlal
     - gstlal.aggregator
-    - gstlal.gviz_api
+    - gstlal.events
     - gstlal.metric
     - gstlal.tree
   commands:
