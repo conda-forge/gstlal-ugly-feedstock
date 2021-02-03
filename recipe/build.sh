@@ -32,8 +32,3 @@ make -j ${CPU_COUNT} V=1 VERBOSE=1
 
 # install
 make -j ${CPU_COUNT} V=1 VERBOSE=1 install
-
-# test
-if [ "$(uname)" == "Linux" ]; then
-  make -j ${CPU_COUNT} V=1 VERBOSE=1 check
-fi
