@@ -14,6 +14,10 @@ export GSTLAL_LIBS="-L${PREFIX}/lib -lgstlal -lgstlaltags -lgstlaltypes"
 export framecpp_CFLAGS=" "
 export LAL_LIBS="-L${PREFIX}/lib -llal"
 
+# replace '/usr/bin/env python3' with '/usr/bin/python'
+# so that conda-build will then replace it with the $PREFIX/bin/python
+sed -i.tmp 's/\/usr\/bin\/env python3/\/usr\/bin\/python/g' ${SRC_DIR}/bin/gstlal_*
+
 # configure
 ${SRC_DIR}/configure \
   --enable-gtk-doc=no \
