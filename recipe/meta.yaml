@@ -7,14 +7,18 @@ package:
 
 source:
   url: https://software.igwn.org/sources/source/{{ name }}-{{ version }}.tar.gz
-  sha256: bec47393e63e5a052778f3b41d5cacfcd25688bbdc305ec3d1c439b85a9f2d4b
+  sha256: 570b306eb1be540b1b83b8d40450791228c26d0e9c41b1ed2b112f184a6a0c8c
 
 build:
   error_overdepending: true
   error_overlinking: true
   ignore_run_exports:
     # not linked, but needed at runtime
+    - gobject-introspection
     - gst-plugins-good
+    - gst-python
+    # configure asks for it, but it is never actually used
+    - liblalmetaio
   number: 0
   skip: true  # [win or py>36]
 
