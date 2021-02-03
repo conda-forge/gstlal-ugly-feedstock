@@ -1,27 +1,26 @@
 {% set name = "gstlal-ugly" %}
-{% set version = "1.7.0" %}
+{% set version = "1.9.0" %}
 
 package:
-  name: "{{ name|lower }}"
-  version: "{{ version }}"
+  name: {{ name|lower }}
+  version: {{ version }}
 
 source:
-  url: "http://software.ligo.org/lscsoft/source/{{ name }}-{{ version }}.tar.gz"
-  sha256: bec47393e63e5a052778f3b41d5cacfcd25688bbdc305ec3d1c439b85a9f2d4b
-  patches:
-    # https://git.ligo.org/lscsoft/gstlal/issues/43
-    - gstaudio-link.patch
+  url: https://software.igwn.org/sources/source/{{ name }}-{{ version }}.tar.gz
+  sha256: 570b306eb1be540b1b83b8d40450791228c26d0e9c41b1ed2b112f184a6a0c8c
 
 build:
   error_overdepending: true
   error_overlinking: true
   ignore_run_exports:
     # not linked, but needed at runtime
+    - gobject-introspection
     - gst-plugins-good
+    - gst-python
     # configure asks for it, but it is never actually used
-    - lalmetaio
+    - liblalmetaio
   number: 0
-  skip: true  # [win or py>30]
+  skip: true  # [win or py>36]
 
 requirements:
   build:
@@ -37,21 +36,21 @@ requirements:
     - gstreamer
     - gst-plugins-base
     - gst-python
-    - gstlal >=1.6.0
-    - lal >=6.19.0
-    - lalmetaio >=1.5.0
+    - gstlal >=1.8.0
     - ldas-tools-al
     - ldas-tools-framecpp >=2.6.2
+    - liblal >=7.1.0
+    - liblalmetaio >=2.0.0
     - ligo-scald >=0.7.2
     - ligo-segments >=1.2.0
     - lscsoft-glue >=2.0.0
     - metaio >=1.4.0
     - nds2-client >=0.11.5
-    - numpy >=1.7.0
+    - numpy
     - pygobject >=3.14
     - python
     - python-lal
-    - python-ligo-lw >=1.5.3
+    - python-ligo-lw >=1.6.0
   run:
     - fftw
     - gobject-introspection >=1.30.0
@@ -60,12 +59,11 @@ requirements:
     - gst-plugins-good
     - gst-python
     - gstreamer
-    - gstlal >=1.6.0
+    - gstlal >=1.8.0
     - h5py
-    - lal >=6.19.2
-    - lalapps >=6.23.0
     - ldas-tools-al
     - ldas-tools-framecpp >=2.6.2
+    - liblal
     - ligo-scald >=0.7.2
     - ligo-segments >=1.2.0
     - lscsoft-glue >=2.0.0
@@ -75,7 +73,7 @@ requirements:
     - python
     - python-lal
     - python-lalsimulation
-    - python-ligo-lw >=1.5.3
+    - python-ligo-lw >=1.6.0
     - scipy
 
 test:
@@ -91,7 +89,7 @@ test:
     - export TMPDIR=$(python -c "import tempfile; print(tempfile.gettempdir())")
     # check executables
     - gstlal_condor_top --help
-    - gstlal_dag_run_time --help
+    #- gstlal_dag_run_time --help  <-- still using python2 imports
     - gstlal_glitch_population --help
     - gstlal_harmonic_mean_psd --help
     - gstlal_kafka_dag --help
