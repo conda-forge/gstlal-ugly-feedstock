@@ -89,7 +89,7 @@ test:
     - export TMPDIR=$(python -c "import tempfile; print(tempfile.gettempdir())")
     # check executables
     - gstlal_condor_top --help
-    - gstlal_dag_run_time --help
+    #- gstlal_dag_run_time --help  <-- still using python2 imports
     - gstlal_glitch_population --help
     - gstlal_harmonic_mean_psd --help
     - gstlal_kafka_dag --help
