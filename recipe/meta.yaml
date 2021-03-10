@@ -1,5 +1,5 @@
 {% set name = "gstlal-ugly" %}
-{% set version = "1.9.0" %}
+{% set version = "1.9.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://software.igwn.org/sources/source/{{ name }}-{{ version }}.tar.gz
-  sha256: 570b306eb1be540b1b83b8d40450791228c26d0e9c41b1ed2b112f184a6a0c8c
+  sha256: 4862d3c7324029ee2a2f3c6ad263c8cf4339f5cf7dcb9bfc4ca238593a1ae9b8
 
 build:
   error_overdepending: true
@@ -100,13 +100,13 @@ test:
     - gstlal_segments_trim --help
 
 about:
-  home: "https://lscsoft.docs.ligo.org/gstlal/"
-  dev_url: "https://git.ligo.org/lscsoft/gstlal/"
-  doc_url: "https://lscsoft.docs.ligo.org/gstlal/"
-  license: "GPL-2.0-or-later"
-  license_family: "GPL"
-  license_file: "COPYING"
-  summary: "GStreamer for GW data analysis (in-development parts)"
+  home: https://lscsoft.docs.ligo.org/gstlal/
+  dev_url: https://git.ligo.org/lscsoft/gstlal/
+  doc_url: https://lscsoft.docs.ligo.org/gstlal/
+  license: GPL-2.0-or-later
+  license_family: GPL
+  license_file: COPYING
+  summary: GStreamer for GW data analysis (in-development parts)
   description: |
     This package provides a variety of gstreamer elements for
     gravitational-wave data analysis and some libraries to help write
