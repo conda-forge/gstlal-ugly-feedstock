@@ -1,5 +1,18 @@
 {% set name = "gstlal-ugly" %}
-{% set version = "1.9.0" %}
+{% set version = "1.9.1" %}
+
+# dependencies
+{% set framecpp_version = "2.6.2" %}
+{% set gds_version = "2.19.0" %}
+{% set gobject_introspection_version = "1.30.0" %}
+{% set gstlal_version = "1.9.0" %}
+{% set lal_version = "7.1.0" %}
+{% set lalmetaio_version = "2.0.0" %}
+{% set ligo_scald_version = "0.7.2" %}
+{% set ligo_segments_version = "1.2.0" %}
+{% set lscsoft_glue_version = "2.0.0" %}
+{% set nds2_version = "0.11.5" %}
+{% set python_ligo_lw_version = "1.7.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +20,7 @@ package:
 
 source:
   url: https://software.igwn.org/sources/source/{{ name }}-{{ version }}.tar.gz
-  sha256: 570b306eb1be540b1b83b8d40450791228c26d0e9c41b1ed2b112f184a6a0c8c
+  sha256: 4862d3c7324029ee2a2f3c6ad263c8cf4339f5cf7dcb9bfc4ca238593a1ae9b8
 
 build:
   error_overdepending: true
@@ -20,7 +33,7 @@ build:
     # configure asks for it, but it is never actually used
     - liblalmetaio
   number: 0
-  skip: true  # [win or py>36]
+  skip: true  # [win]
 
 requirements:
   build:
@@ -31,49 +44,46 @@ requirements:
   host:
     - fftw
     - glib
-    - gobject-introspection >=1.30.0
+    - gobject-introspection >={{ gobject_introspection_version }}
     - gsl
     - gstreamer
     - gst-plugins-base
     - gst-python
-    - gstlal >=1.8.0
+    - gstlal >={{ gstlal_version }}
     - ldas-tools-al
-    - ldas-tools-framecpp >=2.6.2
-    - liblal >=7.1.0
-    - liblalmetaio >=2.0.0
-    - ligo-scald >=0.7.2
-    - ligo-segments >=1.2.0
-    - lscsoft-glue >=2.0.0
-    - metaio >=1.4.0
-    - nds2-client >=0.11.5
+    - ldas-tools-framecpp >={{ framecpp_version }}
+    - liblal >={{ lal_version }}
+    - liblalmetaio >={{ lalmetaio_version }}
+    - ligo-scald >={{ ligo_scald_version }}
+    - ligo-segments >={{ ligo_segments_version }}
+    - lscsoft-glue >={{ lscsoft_glue_version }}
+    - nds2-client >={{ nds2_version }}
     - numpy
-    - pygobject >=3.14
     - python
     - python-lal
-    - python-ligo-lw >=1.6.0
+    - python-ligo-lw >={{ python_ligo_lw_version }}
   run:
     - fftw
-    - gobject-introspection >=1.30.0
+    - gobject-introspection >={{ gobject_introspection_version }}
     - gsl
     - gst-plugins-base
     - gst-plugins-good
     - gst-python
     - gstreamer
-    - gstlal >=1.8.0
+    - gstlal >={{ gstlal_version }}
     - h5py
     - ldas-tools-al
-    - ldas-tools-framecpp >=2.6.2
-    - liblal
-    - ligo-scald >=0.7.2
-    - ligo-segments >=1.2.0
-    - lscsoft-glue >=2.0.0
+    - ldas-tools-framecpp >={{ framecpp_version }}
+    - liblal >={{ lal_version }}
+    - ligo-scald >={{ ligo_scald_version }}
+    - ligo-segments >={{ ligo_segments_version }}
+    - lscsoft-glue >={{ lscsoft_glue_version }}
     - matplotlib-base
     - numpy
-    - pygobject >=3.14
     - python
     - python-lal
     - python-lalsimulation
-    - python-ligo-lw >=1.6.0
+    - python-ligo-lw >={{ python_ligo_lw_version }}
     - scipy
 
 test:
@@ -100,13 +110,13 @@ test:
     - gstlal_segments_trim --help
 
 about:
-  home: "https://lscsoft.docs.ligo.org/gstlal/"
-  dev_url: "https://git.ligo.org/lscsoft/gstlal/"
-  doc_url: "https://lscsoft.docs.ligo.org/gstlal/"
-  license: "GPL-2.0-or-later"
-  license_family: "GPL"
-  license_file: "COPYING"
-  summary: "GStreamer for GW data analysis (in-development parts)"
+  home: https://lscsoft.docs.ligo.org/gstlal/
+  dev_url: https://git.ligo.org/lscsoft/gstlal/
+  doc_url: https://lscsoft.docs.ligo.org/gstlal/
+  license: GPL-2.0-or-later
+  license_family: GPL
+  license_file: COPYING
+  summary: GStreamer for GW data analysis (in-development parts)
   description: |
     This package provides a variety of gstreamer elements for
     gravitational-wave data analysis and some libraries to help write
