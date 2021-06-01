@@ -9,6 +9,8 @@ pushd _build
 find ${PREFIX} -name "*.la" -delete
 
 # only link libraries we actually use
+export gds_LIBS="-L${PREFIX}/lib -lgdsbase"
+export gds_framexmit_LIBS="-L${PREFIX}/lib -lframexmit"
 export GSL_LIBS="-L${PREFIX}/lib -lgsl"
 export GSTLAL_LIBS="-L${PREFIX}/lib -lgstlal -lgstlaltags -lgstlaltypes"
 export framecpp_CFLAGS=" "
@@ -27,7 +29,7 @@ ${SRC_DIR}/configure \
   --prefix=${PREFIX} \
   --with-doxygen=no \
   --with-framecpp=yes \
-  --with-gds=no \
+  --with-gds=yes \
   --with-nds=yes \
 ;
 

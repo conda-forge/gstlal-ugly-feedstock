@@ -32,7 +32,7 @@ build:
     - gst-python
     # configure asks for it, but it is never actually used
     - liblalmetaio
-  number: 0
+  number: 1
   skip: true  # [win]
 
 requirements:
@@ -43,6 +43,9 @@ requirements:
     - pkg-config >=0.18.0  # [unix]
   host:
     - fftw
+    - gds-base >={{ gds_version }}
+    - gds-framexmit >={{ gds_version }}
+    - gds-lsmp >={{ gds_version }}
     - glib
     - gobject-introspection >={{ gobject_introspection_version }}
     - gsl
@@ -64,6 +67,9 @@ requirements:
     - python-ligo-lw >={{ python_ligo_lw_version }}
   run:
     - fftw
+    - gds-base >={{ gds_version }}
+    - gds-framexmit >={{ gds_version }}
+    - gds-lsmp >={{ gds_version }}
     - gobject-introspection >={{ gobject_introspection_version }}
     - gsl
     - gst-plugins-base
@@ -97,6 +103,7 @@ test:
   commands:
     # check gstreamer modules
     - gst-inspect-1.0 framecpp
+    - gst-inspect-1.0 gds
     - gst-inspect-1.0 gstlalugly
     - gst-inspect-1.0 nds
     # check executables
