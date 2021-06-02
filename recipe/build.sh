@@ -38,3 +38,6 @@ make -j ${CPU_COUNT} V=1 VERBOSE=1
 
 # install
 make -j ${CPU_COUNT} V=1 VERBOSE=1 install
+
+# test
+make -j ${CPU_COUNT} V=1 VERBOSE=1 check
