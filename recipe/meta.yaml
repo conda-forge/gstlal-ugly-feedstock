@@ -90,14 +90,17 @@ test:
   requires:
     - python-confluent-kafka
   imports:
-    - gstlal
     - gstlal.aggregator
     - gstlal.events
     - gstlal.metric
     - gstlal.tree
   commands:
-    - export TMPDIR=$(python -c "import tempfile; print(tempfile.gettempdir())")
+    # check gstreamer modules
+    - gst-inspect-1.0 framecpp
+    - gst-inspect-1.0 gstlalugly
+    - gst-inspect-1.0 nds
     # check executables
+    - export TMPDIR=$(python -c "import tempfile; print(tempfile.gettempdir())")
     - gstlal_condor_top --help
     #- gstlal_dag_run_time --help  <-- still using python2 imports
     - gstlal_glitch_population --help
