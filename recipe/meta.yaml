@@ -32,7 +32,7 @@ build:
     - gst-python
     # configure asks for it, but it is never actually used
     - liblalmetaio
-  number: 1
+  number: 2
   skip: true  # [win]
 
 requirements:
