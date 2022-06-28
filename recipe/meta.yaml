@@ -30,6 +30,7 @@ build:
     - gobject-introspection
     - gst-plugins-good
     - gst-python
+    - numpy
     # configure asks for it, but it is never actually used
     - liblalmetaio
   number: 5
