@@ -66,9 +66,6 @@ requirements:
     - python
     - python-lal
     - python-ligo-lw >={{ python_ligo_lw_version }}
-    # required for `make check`
-    # see https://github.com/conda-forge/gstreamer-feedstock/issues/55
-    - mpg123  # [linux]
   run:
     - fftw
     - gds-base >={{ gds_version }}
