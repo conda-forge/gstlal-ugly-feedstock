@@ -5,14 +5,13 @@
 {% set framecpp_version = "2.6.2" %}
 {% set gds_version = "2.19.0" %}
 {% set gobject_introspection_version = "1.30.0" %}
-{% set gstlal_version = "1.9.0" %}
-{% set lal_version = "7.1.0" %}
-{% set lalmetaio_version = "2.0.0" %}
-{% set ligo_scald_version = "0.7.2" %}
-{% set ligo_segments_version = "1.2.0" %}
-{% set lscsoft_glue_version = "2.0.0" %}
+{% set gstlal_version = "1.10.0" %}
+{% set lal_version = "7.2.4" %}
+{% set lalmetaio_version = "3.0.2" %}
+{% set ligo_scald_version = "0.8.0" %}
+{% set ligo_segments_version = "1.4.0" %}
 {% set nds2_version = "0.11.5" %}
-{% set python_ligo_lw_version = "1.7.0" %}
+{% set python_ligo_lw_version = "1.8.3" %}
 
 package:
   name: {{ name|lower }}
@@ -60,7 +59,6 @@ requirements:
     - liblalmetaio >={{ lalmetaio_version }}
     - ligo-scald >={{ ligo_scald_version }}
     - ligo-segments >={{ ligo_segments_version }}
-    - lscsoft-glue >={{ lscsoft_glue_version }}
     - nds2-client >={{ nds2_version }}
     - numpy
     - python
@@ -84,7 +82,6 @@ requirements:
     - liblal >={{ lal_version }}
     - ligo-scald >={{ ligo_scald_version }}
     - ligo-segments >={{ ligo_segments_version }}
-    - lscsoft-glue >={{ lscsoft_glue_version }}
     - matplotlib-base
     - numpy
     - python
@@ -109,11 +106,15 @@ test:
     - gst-inspect-1.0 nds
     # check executables
     - export TMPDIR=$(python -c "import tempfile; print(tempfile.gettempdir())")
+    - export GSTLAL_FIR_WHITEN=0
     - gstlal_condor_top --help
-    #- gstlal_dag_run_time --help  <-- still using python2 imports
+    - gstlal_dag_run_time --help
     - gstlal_glitch_population --help
     - gstlal_harmonic_mean_psd --help
+    - gstlal_ifo_stat --help
+    - gstlal_injsplitter --help
     - gstlal_kafka_dag --help
+    - gstlal_ll_dq --help
     - gstlal_ligolw_add_without_reassign --help
     - gstlal_median_of_psds --help
     - gstlal_reduce_dag --help
