@@ -43,7 +43,6 @@ requirements:
     - pkg-config >=0.18.0  # [unix]
   host:
     - fftw
-    - gds-base >={{ gds_version }}
     - gds-framexmit >={{ gds_version }}
     - gds-lsmp >={{ gds_version }}
     - glib
@@ -66,7 +65,6 @@ requirements:
     - python-ligo-lw >={{ python_ligo_lw_version }}
   run:
     - fftw
-    - gds-base >={{ gds_version }}
     - gds-framexmit >={{ gds_version }}
     - gds-lsmp >={{ gds_version }}
     - gobject-introspection >={{ gobject_introspection_version }}
