@@ -43,7 +43,7 @@ make -j ${CPU_COUNT} V=1 VERBOSE=1
 # install
 make -j ${CPU_COUNT} V=1 VERBOSE=1 install
 
-# test
-if [ "$(uname)" = "Linux" ]; then
-	make -j ${CPU_COUNT} V=1 VERBOSE=1 check
+# test (not when cross-compiling without an emulator)
+if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" || "${CROSSCOMPILING_EMULATOR}" != "" ]]; then
+  make -j ${CPU_COUNT} V=1 VERBOSE=1 check
 fi
