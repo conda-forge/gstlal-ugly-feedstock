@@ -9,12 +9,16 @@ pushd _build
 find ${PREFIX} -name "*.la" -delete
 
 # only link libraries we actually use
-export gds_LIBS="-L${PREFIX}/lib -lgdsbase"
-export gds_framexmit_LIBS="-L${PREFIX}/lib -lframexmit"
 export GSL_LIBS="-L${PREFIX}/lib -lgsl"
 export GSTLAL_LIBS="-L${PREFIX}/lib -lgstlal -lgstlaltags -lgstlaltypes"
 export framecpp_CFLAGS=" "
 export LAL_LIBS="-L${PREFIX}/lib -llal"
+if [[ "$(uname)" = "Linux" ]]; then
+  export gds_framexmit_LIBS="-L${PREFIX}/lib -lframexmit"
+  WITH_GDS="yes"
+else
+  WITH_GDS="no"
+fi
 
 # replace '/usr/bin/env python3' with '/usr/bin/python'
 # so that conda-build will then replace it with the $PREFIX/bin/python
@@ -29,7 +33,7 @@ ${SRC_DIR}/configure \
   --prefix=${PREFIX} \
   --with-doxygen=no \
   --with-framecpp=yes \
-  --with-gds=yes \
+  --with-gds="${WITH_GDS}" \
   --with-nds=yes \
 ;
 
@@ -39,7 +43,7 @@ make -j ${CPU_COUNT} V=1 VERBOSE=1
 # install
 make -j ${CPU_COUNT} V=1 VERBOSE=1 install
 
-# test
-if [ "$(uname)" = "Linux" ]; then
-	make -j ${CPU_COUNT} V=1 VERBOSE=1 check
+# test (not when cross-compiling without an emulator)
+if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" || "${CROSSCOMPILING_EMULATOR}" != "" ]]; then
+  make -j ${CPU_COUNT} V=1 VERBOSE=1 check
 fi
