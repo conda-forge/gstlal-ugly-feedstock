@@ -32,7 +32,7 @@ build:
     - numpy
     # configure asks for it, but it is never actually used
     - liblalmetaio
-  number: 2
+  number: 3
   skip: true  # [win]
 
 requirements:
