@@ -5,7 +5,7 @@
 {% set framecpp_version = "2.6.2" %}
 {% set gds_version = "2.19.0" %}
 {% set gobject_introspection_version = "1.30.0" %}
-{% set gstlal_version = "1.10.0" %}
+{% set gstlal_version = "1.11.0" %}
 {% set lal_version = "7.2.4" %}
 {% set lalmetaio_version = "3.0.2" %}
 {% set ligo_scald_version = "0.8.0" %}
