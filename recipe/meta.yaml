@@ -1,5 +1,5 @@
 {% set name = "gstlal-ugly" %}
-{% set version = "1.11.0" %}
+{% set version = "1.12.0" %}
 
 # dependencies
 {% set framecpp_version = "2.6.2" %}
@@ -19,7 +19,7 @@ package:
 
 source:
   url: https://software.igwn.org/sources/source/{{ name }}-{{ version }}.tar.gz
-  sha256: 4eb80e8adf6a582160ebfb422dc206643babd5446fd437a4f3507a07bfe08521
+  sha256: 9906acf620c01292611249fe653479187a6d6dba5a019206638715b27522b278
 
 build:
   error_overdepending: true
