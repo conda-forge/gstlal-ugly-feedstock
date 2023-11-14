@@ -54,6 +54,7 @@ requirements:
     - gstlal >={{ gstlal_version }}
     - ldas-tools-al
     - ldas-tools-framecpp >={{ framecpp_version }}
+    - libboost-headers
     - liblal >={{ lal_version }}
     - liblalmetaio >={{ lalmetaio_version }}
     - ligo-scald >={{ ligo_scald_version }}
