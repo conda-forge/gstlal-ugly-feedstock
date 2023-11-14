@@ -1,0 +1,12 @@
+--- include/ldastoolsal/fstream.hh	2021-03-26 13:47:46.000000000 +0000
++++ include/ldastoolsal/fstream.hh	2023-08-31 13:58:19.524010997 +0100
+@@ -45,9 +45,6 @@
+         //// \cond EXCLUDE
+         template < class _Traits >
+         struct _Eq_traits
+-            : public std::binary_function< typename _Traits::char_type,
+-                                           typename _Traits::char_type,
+-                                           bool >
+         {
+             bool
+             operator( )( const typename _Traits::char_type& __x,
