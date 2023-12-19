@@ -1,5 +1,5 @@
 {% set name = "gstlal-ugly" %}
-{% set version = "1.12.0" %}
+{% set version = "1.13.0" %}
 
 # dependencies
 {% set framecpp_version = "2.6.2" %}
@@ -19,7 +19,7 @@ package:
 
 source:
   url: https://software.igwn.org/sources/source/{{ name }}-{{ version }}.tar.gz
-  sha256: 9906acf620c01292611249fe653479187a6d6dba5a019206638715b27522b278
+  sha256: e9fdd3beae46fe0bd781c7f20e4116b4accd92417cada341e999ade93e648bf4
 
 build:
   error_overdepending: true
@@ -54,6 +54,7 @@ requirements:
     - gstlal >={{ gstlal_version }}
     - ldas-tools-al
     - ldas-tools-framecpp >={{ framecpp_version }}
+    - libboost-headers
     - liblal >={{ lal_version }}
     - liblalmetaio >={{ lalmetaio_version }}
     - ligo-scald >={{ ligo_scald_version }}

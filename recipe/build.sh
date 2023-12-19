@@ -5,6 +5,9 @@ set -ex
 mkdir -p _build
 pushd _build
 
+# Apply hack for ldas-tools-al using a no-longer-defined function
+patch -N -p0 -f -i $RECIPE_DIR/ldastoolsal-binary_function-hack.patch -d $PREFIX
+
 # conda-forge/conda-forge.github.io#621
 find ${PREFIX} -name "*.la" -delete
 
@@ -47,3 +50,6 @@ make -j ${CPU_COUNT} V=1 VERBOSE=1 install
 if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" || "${CROSSCOMPILING_EMULATOR}" != "" ]]; then
   make -j ${CPU_COUNT} V=1 VERBOSE=1 check
 fi
+
+# Revert hack for ldas-tools-al using a no-longer-defined function
+patch -R -p0 -f -i $RECIPE_DIR/ldastoolsal-binary_function-hack.patch -d $PREFIX
