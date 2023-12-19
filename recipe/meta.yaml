@@ -32,7 +32,7 @@ build:
     - numpy
     # configure asks for it, but it is never actually used
     - liblalmetaio
-  number: 0
+  number: 1
   skip: true  # [win]
 
 requirements:
@@ -53,7 +53,7 @@ requirements:
     - gst-python
     - gstlal >={{ gstlal_version }}
     - ldas-tools-al
-    - ldas-tools-framecpp >={{ framecpp_version }}
+    - ldas-tools-framecpp
     - libboost-headers
     - liblal >={{ lal_version }}
     - liblalmetaio >={{ lalmetaio_version }}

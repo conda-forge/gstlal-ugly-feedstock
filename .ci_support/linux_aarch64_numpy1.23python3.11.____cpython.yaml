@@ -28,6 +28,8 @@ gst_plugins_base:
 - '1.22'
 gstreamer:
 - '1.22'
+ldas_tools_framecpp:
+- '2.9'
 numpy:
 - '1.23'
 pin_run_as_build:
