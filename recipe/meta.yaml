@@ -1,5 +1,5 @@
 {% set name = "gstlal-ugly" %}
-{% set version = "1.13.0" %}
+{% set version = "1.14.0" %}
 
 # dependencies
 {% set framecpp_version = "2.6.2" %}
@@ -19,7 +19,7 @@ package:
 
 source:
   url: https://software.igwn.org/sources/source/{{ name }}-{{ version }}.tar.gz
-  sha256: e9fdd3beae46fe0bd781c7f20e4116b4accd92417cada341e999ade93e648bf4
+  sha256: 63f10175b779532a55d984724448c4d2b771268d6e91f01095891d0674b1f01c
 
 build:
   error_overdepending: true
@@ -32,7 +32,7 @@ build:
     - numpy
     # configure asks for it, but it is never actually used
     - liblalmetaio
-  number: 1
+  number: 0
   skip: true  # [win]
 
 requirements:
