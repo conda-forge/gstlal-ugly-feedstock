@@ -4,7 +4,7 @@
 # dependencies
 {% set framecpp_version = "2.6.2" %}
 {% set gds_version = "2.19.0" %}
-{% set gobject_introspection_version = "1.30.0" %}
+{% set gobject_introspection_version = "1.30.0,<1.80.0" %}
 {% set gstlal_version = "1.11.0" %}
 {% set lal_version = "7.2.4" %}
 {% set lalmetaio_version = "3.0.2" %}
@@ -32,7 +32,7 @@ build:
     - numpy
     # configure asks for it, but it is never actually used
     - liblalmetaio
-  number: 1
+  number: 2
   skip: true  # [win]
 
 requirements:
