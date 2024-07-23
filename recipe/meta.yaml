@@ -20,6 +20,9 @@ package:
 source:
   url: https://software.igwn.org/sources/source/{{ name }}-{{ version }}.tar.gz
   sha256: 63f10175b779532a55d984724448c4d2b771268d6e91f01095891d0674b1f01c
+  patches:
+    # update use of imp module in py-compile (autoconf)
+    - py-compile-imp.patch
 
 build:
   error_overdepending: true
