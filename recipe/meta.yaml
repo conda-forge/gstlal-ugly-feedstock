@@ -98,7 +98,10 @@ test:
     - python-confluent-kafka
   imports:
     - gstlal.aggregator
+    - gstlal.cosmology_utils
     - gstlal.events
+    - gstlal.injection_generation_dag
+    - gstlal.injection_utils
     - gstlal.metric
     - gstlal.tree
   commands:
