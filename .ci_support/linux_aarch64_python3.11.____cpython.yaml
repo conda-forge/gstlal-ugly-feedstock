@@ -34,8 +34,6 @@ gstreamer:
 - '1.22'
 ldas_tools_framecpp:
 - '2.9'
-numpy:
-- '1.23'
 pin_run_as_build:
   python:
     min_pin: x.x
@@ -49,5 +47,3 @@ zip_keys:
   - cxx_compiler_version
 - - c_stdlib_version
   - cdt_name
-- - python
-  - numpy
