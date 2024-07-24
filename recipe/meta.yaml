@@ -20,6 +20,9 @@ package:
 source:
   url: https://software.igwn.org/sources/source/{{ name }}-{{ version }}.tar.gz
   sha256: 63f10175b779532a55d984724448c4d2b771268d6e91f01095891d0674b1f01c
+  patches:
+    # update use of imp module in py-compile (autoconf)
+    - py-compile-imp.patch
 
 build:
   error_overdepending: true
@@ -32,12 +35,13 @@ build:
     - numpy
     # configure asks for it, but it is never actually used
     - liblalmetaio
-  number: 2
+  number: 3
   skip: true  # [win]
 
 requirements:
   build:
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
     - make  # [unix]
     - pkg-config >=0.18.0  # [unix]
@@ -94,7 +98,10 @@ test:
     - python-confluent-kafka
   imports:
     - gstlal.aggregator
+    - gstlal.cosmology_utils
     - gstlal.events
+    - gstlal.injection_generation_dag
+    - gstlal.injection_utils
     - gstlal.metric
     - gstlal.tree
   commands:
