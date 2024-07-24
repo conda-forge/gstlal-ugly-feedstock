@@ -35,7 +35,7 @@ build:
     - numpy
     # configure asks for it, but it is never actually used
     - liblalmetaio
-  number: 3
+  number: 4
   skip: true  # [win]
 
 requirements:
@@ -61,13 +61,8 @@ requirements:
     - libboost-headers
     - liblal >={{ lal_version }}
     - liblalmetaio >={{ lalmetaio_version }}
-    - ligo-scald >={{ ligo_scald_version }}
-    - ligo-segments >={{ ligo_segments_version }}
     - nds2-client >={{ nds2_version }}
-    - numpy
     - python
-    - python-lal
-    - python-ligo-lw >={{ python_ligo_lw_version }}
   run:
     - fftw
     - gds-framexmit >={{ gds_version }}  # [linux]
