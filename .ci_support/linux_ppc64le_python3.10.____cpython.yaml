@@ -31,7 +31,7 @@ gstreamer:
 ldas_tools_framecpp:
 - '2.9'
 libboost_headers:
-- '1.84'
+- '1.86'
 pin_run_as_build:
   python:
     min_pin: x.x
