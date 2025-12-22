@@ -21,7 +21,6 @@ Library (GSL), and, of course, GStreamer.
 This package contains the plugins and shared libraries required to run
 gstlal-based applications.
 
-
 Current build status
 ====================
 
