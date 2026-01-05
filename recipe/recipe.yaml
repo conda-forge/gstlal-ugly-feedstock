@@ -28,7 +28,10 @@ source:
 
 build:
   number: 7
-  skip: win
+  skip:
+    - win
+    # gstlal not built for Python 3.13
+    - match(python, ">=3.13")
 
 requirements:
   build:
