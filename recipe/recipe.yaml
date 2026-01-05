@@ -1,0 +1,145 @@
+schema_version: 1
+
+context:
+  name: gstlal-ugly
+  version: 1.14.0
+  # dependencies
+  framecpp_version: 2.6.2
+  gds_version: 2.19.0
+  gobject_introspection_version: 1.30.0,<1.80.0
+  gstlal_version: 1.11.0
+  lal_version: 7.2.4
+  lalmetaio_version: 3.0.2
+  ligo_scald_version: 0.8.0
+  ligo_segments_version: 1.4.0
+  nds2_version: 0.11.5
+  python_ligo_lw_version: 1.8.3
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://software.igwn.org/sources/source/${{ name }}-${{ version }}.tar.gz
+  sha256: 63f10175b779532a55d984724448c4d2b771268d6e91f01095891d0674b1f01c
+  patches:
+    # update use of imp module in py-compile (autoconf)
+    - py-compile-imp.patch
+
+build:
+  number: 7
+  skip:
+    - win
+    # gstlal not built for Python 3.13
+    - match(python, ">=3.13")
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler('cxx') }}
+    - make
+    - pkg-config >=0.18.0
+  host:
+    - fftw
+    - if: linux
+      then:
+        - gds-framexmit >=${{ gds_version }}
+        - gds-lsmp >=${{ gds_version }}
+    - glib
+    - gobject-introspection >=${{ gobject_introspection_version }}
+    - gsl
+    - gstreamer
+    - gst-plugins-base
+    - gst-python
+    - gstlal >=${{ gstlal_version }}
+    - ldas-tools-al
+    - ldas-tools-framecpp
+    - libboost-headers
+    - liblal >=${{ lal_version }}
+    - liblalmetaio >=${{ lalmetaio_version }}
+    - nds2-client >=${{ nds2_version }}
+    - python
+    - zlib
+  run:
+    - fftw
+    - if: linux
+      then:
+        - gds-framexmit >=${{ gds_version }}
+        - gds-lsmp >=${{ gds_version }}
+    - gobject-introspection >=${{ gobject_introspection_version }}
+    - gsl
+    - gst-plugins-base
+    - gst-plugins-good
+    - gst-python
+    - gstreamer
+    - gstlal >=${{ gstlal_version }}
+    - h5py
+    - ldas-tools-al
+    - ldas-tools-framecpp >=${{ framecpp_version }}
+    - liblal >=${{ lal_version }}
+    - ligo-scald >=${{ ligo_scald_version }}
+    - ligo-segments >=${{ ligo_segments_version }}
+    - matplotlib-base
+    - numpy
+    - python
+    - python-lal
+    - python-lalsimulation
+    - python-ligo-lw >=${{ python_ligo_lw_version }}
+    - scipy
+  ignore_run_exports:
+    by_name:
+      - gobject-introspection
+      - gst-plugins-good
+      - gst-python
+      - liblalmetaio
+      - numpy
+    from_package:
+      - zlib
+
+tests:
+  - requirements:
+      run:
+        - python-confluent-kafka
+    script:
+      - gst-inspect-1.0 framecpp
+      - if: linux
+        then: gst-inspect-1.0 gds
+      - gst-inspect-1.0 gstlalugly
+      - gst-inspect-1.0 nds
+      - "export TMPDIR=$(python -c \"import tempfile; print(tempfile.gettempdir())\")"
+      - export GSTLAL_FIR_WHITEN=0
+      - gstlal_condor_top --help
+      - gstlal_dag_run_time --help
+      - gstlal_glitch_population --help
+      - gstlal_harmonic_mean_psd --help
+      - gstlal_ifo_stat --help
+      - gstlal_injsplitter --help
+      - gstlal_kafka_dag --help
+      - gstlal_ll_dq --help
+      - gstlal_ligolw_add_without_reassign --help
+      - gstlal_median_of_psds --help
+      - gstlal_reduce_dag --help
+      - gstlal_segments_operations --help
+      - gstlal_segments_trim --help
+
+about:
+  summary: GStreamer for GW data analysis (in-development parts)
+  description: |
+    This package provides a variety of gstreamer elements for
+    gravitational-wave data analysis and some libraries to help write
+    such elements.  The code here sits on top of several other libraries,
+    notably the LIGO Algorithm Library (LAL), FFTW, the GNU Scientific
+    Library (GSL), and, of course, GStreamer.
+    This package contains the plugins and shared libraries required to run
+    gstlal-based applications.
+  homepage: https://lscsoft.docs.ligo.org/gstlal/
+  repository: https://git.ligo.org/lscsoft/gstlal/
+  documentation: https://lscsoft.docs.ligo.org/gstlal/
+  license: GPL-2.0-or-later
+  license_file: COPYING
+
+extra:
+  recipe-maintainers:
+    - duncanmmacleod
+    - myNameIsPatrick

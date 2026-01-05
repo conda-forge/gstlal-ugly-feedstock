@@ -5,9 +5,6 @@ set -ex
 mkdir -p _build
 pushd _build
 
-# Apply hack for ldas-tools-al using a no-longer-defined function
-patch -N -p0 -f -i $RECIPE_DIR/ldastoolsal-binary_function-hack.patch -d $PREFIX
-
 # conda-forge/conda-forge.github.io#621
 find ${PREFIX} -name "*.la" -delete
 
@@ -23,9 +20,9 @@ else
   WITH_GDS="no"
 fi
 
-# replace '/usr/bin/env python3' with '/usr/bin/python'
-# so that conda-build will then replace it with the $PREFIX/bin/python
-sed -i.tmp 's/\/usr\/bin\/env python3/\/usr\/bin\/python/g' ${SRC_DIR}/bin/gstlal_*
+# replace '/usr/bin/env python{3}' with $PYTHON so that the builder
+# invokes prefix replacement correctly
+sed -i.tmp -E "s|/usr/bin/env python(3)?|${PYTHON}|g" ${SRC_DIR}/bin/gstlal_*
 
 # configure
 ${SRC_DIR}/configure \
@@ -50,6 +47,3 @@ make -j ${CPU_COUNT} V=1 VERBOSE=1 install
 if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" ]]; then
   make -j ${CPU_COUNT} V=1 VERBOSE=1 check
 fi
-
-# Revert hack for ldas-tools-al using a no-longer-defined function
-patch -R -p0 -f -i $RECIPE_DIR/ldastoolsal-binary_function-hack.patch -d $PREFIX
