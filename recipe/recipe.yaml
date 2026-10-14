@@ -27,7 +27,7 @@ source:
     - py-compile-imp.patch
 
 build:
-  number: 8
+  number: 9
   skip:
     - win
     # gstlal not built for Python 3.13
