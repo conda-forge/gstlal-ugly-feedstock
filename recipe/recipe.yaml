@@ -35,6 +35,12 @@ build:
 
 requirements:
   build:
+    - if: build_platform != host_platform
+      then:
+        - python
+        - cross-python_${{ host_platform }}
+    - if: unix
+      then: gnuconfig
     - ${{ compiler('c') }}
     - ${{ stdlib('c') }}
     - ${{ compiler('cxx') }}
