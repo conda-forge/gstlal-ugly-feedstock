@@ -1,5 +1,3 @@
-MACOSX_DEPLOYMENT_TARGET:
-- '11.0'
 MACOSX_SDK_VERSION:
 - '11.0'
 c_compiler:
@@ -29,7 +27,7 @@ gst_plugins_base:
 gstreamer:
 - '1.28'
 ldas_tools_framecpp:
-- '2.9'
+- '4.1'
 libboost_headers:
 - '1.90'
 macos_machine:
